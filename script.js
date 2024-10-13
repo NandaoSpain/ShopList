@@ -34,4 +34,8 @@ form.addEventListener('submit', (e) => {
       newElementLabel.style.textDecoration = 'none'
     }
   })
+
+  newElementButton.addEventListener('click', () => {
+    newElementLi.remove()
+  })
 })
