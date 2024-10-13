@@ -128,4 +128,8 @@ li button {
     width: 100%;
     padding: 16px;
   }
+
+  header {
+    padding: 25px 0 25px 0;
+  }
 }
