@@ -1,12 +1,25 @@
 const form = document.querySelector('form')
 const input = document.querySelector('input')
 const newItem = document.querySelector('ul')
+const buttonModals = document.getElementsByClassName('close')
+const modals = document.getElementsByClassName('hide')
+const aviso = document.getElementById('modal')
+
+Array.from(buttonModals).forEach(buttonModal => {
+  buttonModal.onclick = () => {
+    const modal = document.querySelector('.modal')
+    if (modal) {
+      modal.classList.add('hide')
+    }
+  };
+});
 
 document.addEventListener('DOMContentLoaded', () => {
   const savedItems = JSON.parse(localStorage.getItem('listaItens')) || []
   savedItems.forEach(item => {
     addItem(item.text, item.checked)
   })
+  aviso.classList.add('hide')
 })
 
 form.addEventListener('submit', (e) => {
@@ -45,6 +58,8 @@ function addItem(text, checked) {
 
   newElementButton.addEventListener('click', () => {
     newElementLi.remove()
+    if (modals)
+      aviso.classList.remove('hide')
     attLocalStorage()
   })
 }
@@ -64,3 +79,5 @@ function attLocalStorage() {
   })
   localStorage.setItem('listaItens', JSON.stringify(attList))
 }
+
+

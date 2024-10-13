@@ -65,6 +65,7 @@ ul {
   display: flex;
   flex-direction: column;
   gap: 12px;
+  padding: 8px 0;
 }
 
 li {
@@ -87,4 +88,29 @@ li button {
   border: none;
   font-size: 18px;
   color: gray;
+}
+
+.modal {
+  background-color: red;
+  color: white;
+  
+  i {
+    font-size: 20px;
+  }
+
+  button {
+    color: white;
+    background-color: red;
+  }
+}
+
+.hide {
+  display: none;
+}
+
+
+@media screen(640px) {
+  body {
+    
+  }
 }
