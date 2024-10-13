@@ -26,4 +26,12 @@ form.addEventListener('submit', (e) => {
 
   newItem.appendChild(newElementLi)
   input.value = ''
+
+  newElementCheckbox.addEventListener('change', (e) => {
+    if (newElementCheckbox.checked) {
+      newElementLabel.style.textDecoration= 'line-through'
+    } else {
+      newElementLabel.style.textDecoration = 'none'
+    }
+  })
 })
