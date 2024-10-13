@@ -2,9 +2,24 @@ const form = document.querySelector('form')
 const input = document.querySelector('input')
 const newItem = document.querySelector('ul')
 
+document.addEventListener('DOMContentLoaded', () => {
+  const savedItems = JSON.parse(localStorage.getItem('listaItens')) || []
+  savedItems.forEach(item => {
+    addItem(item.text, item.checked)
+  })
+})
+
 form.addEventListener('submit', (e) => {
   e.preventDefault()
-  
+  const newItemText = input.value
+  if (newItemText.trim() !== '') {
+    addItem(newItemText, false)
+    saveLocalStorage(newItemText, false)
+    input.value = ''
+  }
+})
+
+function addItem(text, checked) {
   let newElementLi = document.createElement('li')
   let newElementDiv = document.createElement('div')
   let newElementCheckbox = document.createElement('input')
@@ -13,29 +28,39 @@ form.addEventListener('submit', (e) => {
   let newElementIcon = document.createElement('i')
 
   newElementCheckbox.type = 'checkbox'
-  newElementLabel.textContent = input.value
+  newElementCheckbox.checked = checked
+  newElementLabel.textContent = text
   newElementIcon.classList.add('ph', 'ph-trash')
-
   newElementButton.appendChild(newElementIcon)
 
   newElementDiv.appendChild(newElementCheckbox)
   newElementDiv.appendChild(newElementLabel)
-
   newElementLi.appendChild(newElementDiv)
   newElementLi.appendChild(newElementButton)
-
   newItem.appendChild(newElementLi)
-  input.value = ''
 
-  newElementCheckbox.addEventListener('change', (e) => {
-    if (newElementCheckbox.checked) {
-      newElementLabel.style.textDecoration= 'line-through'
-    } else {
-      newElementLabel.style.textDecoration = 'none'
-    }
+  newElementCheckbox.addEventListener('change', () => {
+    attLocalStorage()
   })
 
   newElementButton.addEventListener('click', () => {
     newElementLi.remove()
+    attLocalStorage()
   })
-})
+}
+
+function saveLocalStorage(text, checked) {
+  const listaItens = JSON.parse(localStorage.getItem('listaItens')) || []
+  listaItens.push({ text, checked })
+  localStorage.setItem('listaItens', JSON.stringify(listaItens))
+}
+
+function attLocalStorage() {
+  const attList = []
+  newItem.querySelectorAll('li').forEach(li => {
+    const checkbox = li.querySelector('input[type="checkbox"]')
+    const label = li.querySelector('label')
+    attList.push({ text: label.textContent, checked: checkbox.checked })
+  })
+  localStorage.setItem('listaItens', JSON.stringify(attList))
+}
