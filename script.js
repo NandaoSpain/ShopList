@@ -53,6 +53,11 @@ function addItem(text, checked) {
   newItem.appendChild(newElementLi)
 
   newElementCheckbox.addEventListener('change', () => {
+    if (newElementCheckbox.checked) {
+      newElementLabel.style.textDecoration = 'line-through' 
+    } else {
+      newElementLabel.style.textDecoration = 'none' 
+    }
     attLocalStorage()
   })
 

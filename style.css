@@ -109,8 +109,23 @@ li button {
 }
 
 
-@media screen(640px) {
-  body {
-    
+@media screen and (max-width: 640px) {
+  main {
+    max-width: 327px;
+    font-size: 12px;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+
+  form input {
+    max-width: 300px;
+  }
+
+  form button {
+    width: 100%;
+    padding: 16px;
   }
 }
