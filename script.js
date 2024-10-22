@@ -11,8 +11,8 @@ Array.from(buttonModals).forEach(buttonModal => {
     if (modal) {
       modal.classList.add('hide')
     }
-  };
-});
+  }
+})
 
 document.addEventListener('DOMContentLoaded', () => {
   const savedItems = JSON.parse(localStorage.getItem('listaItens')) || []
@@ -84,5 +84,3 @@ function attLocalStorage() {
   })
   localStorage.setItem('listaItens', JSON.stringify(attList))
 }
-
-
